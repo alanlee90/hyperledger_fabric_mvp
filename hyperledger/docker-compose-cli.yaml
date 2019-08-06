@@ -1,0 +1,210 @@
+# # Copyright IBM Corp. All Rights Reserved.
+# #
+# # SPDX-License-Identifier: Apache-2.0
+# #
+
+# version: '2'
+
+# volumes:
+#   orderer0.ordererorg:
+#   orderer1.ordererorg:
+#   orderer2.ordererorg:
+#   peer0.orderorg:
+#   peer1.orderorg:
+#   peer2.contractororg:
+#   peer3.contractororg:
+#   peer4.subcontractororg:
+#   peer5.subcontractororg:
+#   peer6.dataproviderorg:
+#   peer7.governanceorg:
+#   peer8.governanceorg:
+#   peer9.governanceorg:
+
+
+# networks:
+#   blockchain_network:
+
+# services:
+
+#   orderer0.ordererorg:
+#     extends:
+#       file:   ./docker-compose-orderer.yaml
+#       service: orderer0.ordererorg
+#     container_name: orderer0.ordererorg
+#     networks:
+#       - blockchain_network
+
+#   orderer1.ordererorg:
+#     extends:
+#       file:   ./docker-compose-orderer.yaml
+#       service: orderer1.ordererorg
+#     container_name: orderer1.ordererorg
+#     networks:
+#       - blockchain_network
+
+#   orderer2.ordererorg:
+#     extends:
+#       file:   ./docker-compose-orderer.yaml
+#       service: orderer2.ordererorg
+#     container_name: orderer2.ordererorg
+#     networks:
+#       - blockchain_network
+
+#   peer0.orderorg:
+#     container_name: peer0.orderorg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer0.orderorg
+#     networks:
+#       - blockchain_network
+
+#   peer1.orderorg:
+#     container_name: peer1.orderorg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer1.orderorg
+#     networks:
+#       - blockchain_network
+
+#   peer2.contractororg:
+#     container_name: peer2.contractororg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer2.contractororg
+#     networks:
+#       - blockchain_network
+
+#   peer3.contractororg:
+#     container_name: peer3.contractororg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer3.contractororg
+#     networks:
+#       - blockchain_network
+  
+#   peer4.subcontractororg:
+#     container_name: peer4.subcontractororg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer4.subcontractororg
+#     networks:
+#       - blockchain_network
+
+#   peer5.subcontractororg:
+#     container_name: peer5.subcontractororg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer5.subcontractororg
+#     networks:
+#       - blockchain_network
+
+#   peer6.dataproviderorg:
+#     container_name: peer6.dataproviderorg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer6.dataproviderorg
+#     networks:
+#       - blockchain_network
+
+#   peer7.governanceorg:
+#     container_name: peer7.governanceorg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer7.governanceorg
+#     networks:
+#       - blockchain_network
+
+#   peer8.governanceorg:
+#     container_name: peer8.governanceorg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer8.governanceorg
+#     networks:
+#       - blockchain_network
+
+#   peer9.governanceorg:
+#     container_name: peer9.governanceorg
+#     extends:
+#       file:  ./docker-compose-peer.yaml
+#       service: peer9.governanceorg
+#     networks:
+#       - blockchain_network
+
+#   cli:
+#     container_name: cli
+#     image: hyperledger/fabric-tools
+#     tty: true
+#     stdin_open: true
+#     environment:
+#       - SYS_CHANNEL=$SYS_CHANNEL
+#       - GOPATH=/opt/gopath
+#       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+#       #- FABRIC_LOGGING_SPEC=DEBUG
+#       - FABRIC_LOGGING_SPEC=INFO
+#       - CORE_PEER_ID=cli
+#       - CORE_PEER_ADDRESS=peer0.orderorg:7051
+#       - CORE_PEER_LOCALMSPID=Org1MSP
+#       - CORE_PEER_TLS_ENABLED=true
+#       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/peers/peer0.orderorg/tls/server.crt
+#       - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/peers/peer0.orderorg/tls/server.key
+#       - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/peers/peer0.orderorg/tls/ca.crt
+#       - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/users/Admin@orderorg/msp
+#     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+#     command: /bin/bash
+#     volumes:
+#         - /var/run/:/host/var/run/
+#         - ./chaincode/:/opt/gopath/src/github.com/chaincode
+#         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+#         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
+#         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+#     depends_on:
+#       - orderer0.ordererorg
+#       - orderer1.ordererorg
+#       - orderer2.ordererorg
+#       - peer0.orderorg
+#       - peer1.orderorg
+#       - peer2.contractororg
+#       - peer3.contractororg
+#       - peer4.subcontractororg
+#       - peer5.subcontractororg
+#       - peer6.dataproviderorg
+#       - peer7.governanceorg
+#       - peer8.governanceorg
+#       - peer9.governanceorg
+#     networks:
+#       - blockchain_network
+
+version: '2'
+
+networks:
+  blockchain_network:
+
+services:
+  cli:
+    container_name: cli
+    image: hyperledger/fabric-tools
+    tty: true
+    environment:
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=info
+      - CORE_PEER_ID=cli
+      - CORE_PEER_ADDRESS=peer0.orderorg:7051
+      - CORE_PEER_LOCALMSPID=OrderOrgMSP
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/users/Admin@orderorg/msp
+      - CORE_CHAINCODE_KEEPALIVE=10
+      # Enable TLS
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/peers/peer0.orderorg/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/peers/peer0.orderorg/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/orderorg/peers/peer0.orderorg/tls/ca.crt
+    working_dir: /etc/hyperledger/configtx
+    command: /bin/bash
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel-artifacts:/etc/hyperledger/configtx
+        - ./crypto-config:/etc/hyperledger/crypto-config
+        - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+        - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+    networks:
+        - blockchain_network
